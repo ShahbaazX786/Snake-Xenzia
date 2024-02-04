@@ -61,7 +61,7 @@ body,
 
 #score,
 #highScore {
-    font-style: 40px;
+    font-size: 40px;
     font-weight: bolder;
     margin: 10px 0;
 }
