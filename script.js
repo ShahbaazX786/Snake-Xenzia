@@ -45,7 +45,7 @@ function drawFood() {
     if (gameStarted) {
         const foodEl = createGameElement('div', 'food');
         setElementPosition(foodEl, food);
-        board.appendChild(foodEl)
+        gameBoard.appendChild(foodEl)
     }
 }
 
@@ -54,9 +54,6 @@ function generateRandomFood() {
     const y = Math.floor(Math.random() * gridSize) + 1;
     return { x, y };
 }
-
-
-// Movement of the character
 
 function move() {
     const head = { ...snake[0] };
@@ -103,27 +100,27 @@ function startGame() {
 }
 
 function handleKeyPress(event) {
-    if (!gameStarted && event.code === 'space' || !gameStarted && event.code === '') {
+    if ((!gameStarted && event.code === 'Space') || (!gameStarted && event.key === '')) {
         startGame();
     } else {
         switch (event.key) {
             case 'ArrowUp':
                 direction = 'up';
                 break;
-            case 'ArrowUp':
+            case 'ArrowDown':
                 direction = 'down';
                 break;
             case 'ArrowLeft':
-                direction = 'down';
+                direction = 'left';
                 break;
             case 'ArrowRight':
-                direction = 'down';
+                direction = 'right';
                 break;
         }
     }
 }
 
-document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keydown', handleKeyPress);
 
 
 function increaseSpeed() {
@@ -179,7 +176,7 @@ function updateHighScore() {
     const currentScore = snake.length - 1;
     if (currentScore > GamehighScore) {
         GamehighScore = currentScore;
-        highScore.textContent = highScore.toString().padStart(3, '0');
+        highScore.textContent = GamehighScore.toString().padStart(3, '0');
         padStart(3, '0');
     }
     highScore.style.display = 'block';
