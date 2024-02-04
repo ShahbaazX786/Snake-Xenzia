@@ -12,6 +12,7 @@ let direction = 'right';
 let gameInterval;
 let snakeSpeed = 200;
 let gameStarted = false;
+getGameHighScore();
 
 function draw() {
     gameBoard.innerHTML = '';
@@ -162,7 +163,7 @@ function resetGame() {
 
 function updateScore() {
     const currentScore = snake.length - 1;
-    score.textContent = currentScore.toString().padStart(3, '0');
+    score.textContent = "Score:" + currentScore.toString().padStart(3, '0');
 }
 
 function stopGame() {
@@ -176,8 +177,17 @@ function updateHighScore() {
     const currentScore = snake.length - 1;
     if (currentScore > GamehighScore) {
         GamehighScore = currentScore;
-        highScore.textContent = GamehighScore.toString().padStart(3, '0');
-        padStart(3, '0');
+        highScore.textContent = "Hi-Score:" + GamehighScore.toString().padStart(3, '0');
+        localStorage.setItem('GameHighScore', JSON.stringify(GamehighScore));
     }
     highScore.style.display = 'block';
+}
+
+function getGameHighScore() {
+    const scoreExist = localStorage.getItem('GameHighScore');
+    if (scoreExist && scoreExist > 0) {
+        highScore.style.display = 'block';
+        highScore.textContent = "Hi-Score:"+ scoreExist.toString().padStart(3, '0');
+        GamehighScore = scoreExist;
+    }
 }
