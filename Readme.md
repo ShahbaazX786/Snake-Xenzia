@@ -22,7 +22,7 @@
 
 #### About The Project
 
-![Screen Shot](public/GithubDevFinder.png)
+![Screen Shot](./assets/game-sc-1.png)
 
 This is the best game we could play in the retro phones.
 
